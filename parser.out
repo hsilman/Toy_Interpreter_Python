@@ -1,0 +1,341 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> assignment
+Rule 1     assignment -> ID EQUAL expression SEMICOLON
+Rule 2     expression -> expression PLUS term
+Rule 3     expression -> expression MINUS term
+Rule 4     expression -> term
+Rule 5     term -> term MULTI factor
+Rule 6     term -> factor
+Rule 7     factor -> LPAREN expression RPAREN
+Rule 8     factor -> MINUS factor
+Rule 9     factor -> PLUS factor
+Rule 10    factor -> LITERAL
+Rule 11    factor -> ID
+
+Terminals, with rules where they appear
+
+EQUAL                : 1
+ID                   : 1 11
+LITERAL              : 10
+LPAREN               : 7
+MINUS                : 3 8
+MULTI                : 5
+PLUS                 : 2 9
+RPAREN               : 7
+SEMICOLON            : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 0
+expression           : 1 2 3 7
+factor               : 5 6 8 9
+term                 : 2 3 4 5
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . assignment
+    (1) assignment -> . ID EQUAL expression SEMICOLON
+
+    ID              shift and go to state 2
+
+    assignment                     shift and go to state 1
+
+state 1
+
+    (0) S' -> assignment .
+
+
+
+state 2
+
+    (1) assignment -> ID . EQUAL expression SEMICOLON
+
+    EQUAL           shift and go to state 3
+
+
+state 3
+
+    (1) assignment -> ID EQUAL . expression SEMICOLON
+    (2) expression -> . expression PLUS term
+    (3) expression -> . expression MINUS term
+    (4) expression -> . term
+    (5) term -> . term MULTI factor
+    (6) term -> . factor
+    (7) factor -> . LPAREN expression RPAREN
+    (8) factor -> . MINUS factor
+    (9) factor -> . PLUS factor
+    (10) factor -> . LITERAL
+    (11) factor -> . ID
+
+    LPAREN          shift and go to state 10
+    MINUS           shift and go to state 8
+    PLUS            shift and go to state 6
+    LITERAL         shift and go to state 11
+    ID              shift and go to state 4
+
+    expression                     shift and go to state 5
+    term                           shift and go to state 7
+    factor                         shift and go to state 9
+
+state 4
+
+    (11) factor -> ID .
+
+    MULTI           reduce using rule 11 (factor -> ID .)
+    SEMICOLON       reduce using rule 11 (factor -> ID .)
+    PLUS            reduce using rule 11 (factor -> ID .)
+    MINUS           reduce using rule 11 (factor -> ID .)
+    RPAREN          reduce using rule 11 (factor -> ID .)
+
+
+state 5
+
+    (1) assignment -> ID EQUAL expression . SEMICOLON
+    (2) expression -> expression . PLUS term
+    (3) expression -> expression . MINUS term
+
+    SEMICOLON       shift and go to state 12
+    PLUS            shift and go to state 13
+    MINUS           shift and go to state 14
+
+
+state 6
+
+    (9) factor -> PLUS . factor
+    (7) factor -> . LPAREN expression RPAREN
+    (8) factor -> . MINUS factor
+    (9) factor -> . PLUS factor
+    (10) factor -> . LITERAL
+    (11) factor -> . ID
+
+    LPAREN          shift and go to state 10
+    MINUS           shift and go to state 8
+    PLUS            shift and go to state 6
+    LITERAL         shift and go to state 11
+    ID              shift and go to state 4
+
+    factor                         shift and go to state 15
+
+state 7
+
+    (4) expression -> term .
+    (5) term -> term . MULTI factor
+
+    SEMICOLON       reduce using rule 4 (expression -> term .)
+    PLUS            reduce using rule 4 (expression -> term .)
+    MINUS           reduce using rule 4 (expression -> term .)
+    RPAREN          reduce using rule 4 (expression -> term .)
+    MULTI           shift and go to state 16
+
+
+state 8
+
+    (8) factor -> MINUS . factor
+    (7) factor -> . LPAREN expression RPAREN
+    (8) factor -> . MINUS factor
+    (9) factor -> . PLUS factor
+    (10) factor -> . LITERAL
+    (11) factor -> . ID
+
+    LPAREN          shift and go to state 10
+    MINUS           shift and go to state 8
+    PLUS            shift and go to state 6
+    LITERAL         shift and go to state 11
+    ID              shift and go to state 4
+
+    factor                         shift and go to state 17
+
+state 9
+
+    (6) term -> factor .
+
+    MULTI           reduce using rule 6 (term -> factor .)
+    SEMICOLON       reduce using rule 6 (term -> factor .)
+    PLUS            reduce using rule 6 (term -> factor .)
+    MINUS           reduce using rule 6 (term -> factor .)
+    RPAREN          reduce using rule 6 (term -> factor .)
+
+
+state 10
+
+    (7) factor -> LPAREN . expression RPAREN
+    (2) expression -> . expression PLUS term
+    (3) expression -> . expression MINUS term
+    (4) expression -> . term
+    (5) term -> . term MULTI factor
+    (6) term -> . factor
+    (7) factor -> . LPAREN expression RPAREN
+    (8) factor -> . MINUS factor
+    (9) factor -> . PLUS factor
+    (10) factor -> . LITERAL
+    (11) factor -> . ID
+
+    LPAREN          shift and go to state 10
+    MINUS           shift and go to state 8
+    PLUS            shift and go to state 6
+    LITERAL         shift and go to state 11
+    ID              shift and go to state 4
+
+    expression                     shift and go to state 18
+    term                           shift and go to state 7
+    factor                         shift and go to state 9
+
+state 11
+
+    (10) factor -> LITERAL .
+
+    MULTI           reduce using rule 10 (factor -> LITERAL .)
+    SEMICOLON       reduce using rule 10 (factor -> LITERAL .)
+    PLUS            reduce using rule 10 (factor -> LITERAL .)
+    MINUS           reduce using rule 10 (factor -> LITERAL .)
+    RPAREN          reduce using rule 10 (factor -> LITERAL .)
+
+
+state 12
+
+    (1) assignment -> ID EQUAL expression SEMICOLON .
+
+    $end            reduce using rule 1 (assignment -> ID EQUAL expression SEMICOLON .)
+
+
+state 13
+
+    (2) expression -> expression PLUS . term
+    (5) term -> . term MULTI factor
+    (6) term -> . factor
+    (7) factor -> . LPAREN expression RPAREN
+    (8) factor -> . MINUS factor
+    (9) factor -> . PLUS factor
+    (10) factor -> . LITERAL
+    (11) factor -> . ID
+
+    LPAREN          shift and go to state 10
+    MINUS           shift and go to state 8
+    PLUS            shift and go to state 6
+    LITERAL         shift and go to state 11
+    ID              shift and go to state 4
+
+    term                           shift and go to state 19
+    factor                         shift and go to state 9
+
+state 14
+
+    (3) expression -> expression MINUS . term
+    (5) term -> . term MULTI factor
+    (6) term -> . factor
+    (7) factor -> . LPAREN expression RPAREN
+    (8) factor -> . MINUS factor
+    (9) factor -> . PLUS factor
+    (10) factor -> . LITERAL
+    (11) factor -> . ID
+
+    LPAREN          shift and go to state 10
+    MINUS           shift and go to state 8
+    PLUS            shift and go to state 6
+    LITERAL         shift and go to state 11
+    ID              shift and go to state 4
+
+    term                           shift and go to state 20
+    factor                         shift and go to state 9
+
+state 15
+
+    (9) factor -> PLUS factor .
+
+    MULTI           reduce using rule 9 (factor -> PLUS factor .)
+    SEMICOLON       reduce using rule 9 (factor -> PLUS factor .)
+    PLUS            reduce using rule 9 (factor -> PLUS factor .)
+    MINUS           reduce using rule 9 (factor -> PLUS factor .)
+    RPAREN          reduce using rule 9 (factor -> PLUS factor .)
+
+
+state 16
+
+    (5) term -> term MULTI . factor
+    (7) factor -> . LPAREN expression RPAREN
+    (8) factor -> . MINUS factor
+    (9) factor -> . PLUS factor
+    (10) factor -> . LITERAL
+    (11) factor -> . ID
+
+    LPAREN          shift and go to state 10
+    MINUS           shift and go to state 8
+    PLUS            shift and go to state 6
+    LITERAL         shift and go to state 11
+    ID              shift and go to state 4
+
+    factor                         shift and go to state 21
+
+state 17
+
+    (8) factor -> MINUS factor .
+
+    MULTI           reduce using rule 8 (factor -> MINUS factor .)
+    SEMICOLON       reduce using rule 8 (factor -> MINUS factor .)
+    PLUS            reduce using rule 8 (factor -> MINUS factor .)
+    MINUS           reduce using rule 8 (factor -> MINUS factor .)
+    RPAREN          reduce using rule 8 (factor -> MINUS factor .)
+
+
+state 18
+
+    (7) factor -> LPAREN expression . RPAREN
+    (2) expression -> expression . PLUS term
+    (3) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 22
+    PLUS            shift and go to state 13
+    MINUS           shift and go to state 14
+
+
+state 19
+
+    (2) expression -> expression PLUS term .
+    (5) term -> term . MULTI factor
+
+    SEMICOLON       reduce using rule 2 (expression -> expression PLUS term .)
+    PLUS            reduce using rule 2 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 2 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 2 (expression -> expression PLUS term .)
+    MULTI           shift and go to state 16
+
+
+state 20
+
+    (3) expression -> expression MINUS term .
+    (5) term -> term . MULTI factor
+
+    SEMICOLON       reduce using rule 3 (expression -> expression MINUS term .)
+    PLUS            reduce using rule 3 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 3 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 3 (expression -> expression MINUS term .)
+    MULTI           shift and go to state 16
+
+
+state 21
+
+    (5) term -> term MULTI factor .
+
+    MULTI           reduce using rule 5 (term -> term MULTI factor .)
+    SEMICOLON       reduce using rule 5 (term -> term MULTI factor .)
+    PLUS            reduce using rule 5 (term -> term MULTI factor .)
+    MINUS           reduce using rule 5 (term -> term MULTI factor .)
+    RPAREN          reduce using rule 5 (term -> term MULTI factor .)
+
+
+state 22
+
+    (7) factor -> LPAREN expression RPAREN .
+
+    MULTI           reduce using rule 7 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 7 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 7 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 7 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 7 (factor -> LPAREN expression RPAREN .)
+
