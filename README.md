@@ -1,5 +1,5 @@
 # Toy_Interpreter_Python
-Toy Language Interpreter built in Python using the [PLY](https://www.dabeaz.com/ply/)
+Toy Language Interpreter built in Python using the [PLY](https://www.dabeaz.com/ply/) library
 </br>
 </br>
 Run on the command line as:</br>
